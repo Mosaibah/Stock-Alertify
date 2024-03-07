@@ -1,0 +1,41 @@
+version: "3.9"
+
+networks:
+  internal_nw:
+    name: internal_nw
+    driver: bridge
+
+services:
+  database:
+    container_name: database-node
+    image: cockroachdb/cockroach:v22.2.0
+    command: start-single-node --insecure --http-addr 0.0.0.0
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
+    ports:
+      - "26257:26257"
+      - "8080:8080"
+    networks:
+      - internal_nw
+
+  broker:
+    image: rabbitmq:3.8-management
+    container_name: rabbitmq-node
+    hostname: broker
+    ports:
+      - 0.0.0.0:5672:5672
+      - 0.0.0.0:15672:15672
+    volumes:
+      - "./config/test_setup.sh:/dev/test_setup.sh"
+      - "./config/definitions.json:/etc/rabbitmq/definitions.json"
+      - "./config/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf"
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+      - RABBITMQ_NODE_IP_ADDRESS=0.0.0.0
+      - NODE_IP_ADDRESS=0.0.0.0
+      - RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS=-rabbit loopback_users "none"
+    command: >
+      sh -c "rabbitmq-server"
+    networks:
+      - internal_nw
