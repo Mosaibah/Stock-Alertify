@@ -10,3 +10,15 @@
 #### What does __init__ file mean ?
 - This is what allows importing code from one file into another.
 
+
+#### Should i use request library or http.client ?
+- http.client a standard library from Python (less intuitive, more control)
+- Reqest external library (Readable and concise)
+- I'll go with request, because its simple
+
+
+#### What is the naming convesion for function ?
+- snake_case [the Style Guide for Python Code](https://pep8.org/)
+
+#### How can i handle the enviroment varialbes ?
+- 
