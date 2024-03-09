@@ -1,1 +1,1 @@
-CREATE DATABASE IF NOT EXISTS investor_bulletin;
+CREATE DATABASE IF NOT EXISTS stock_alertify;

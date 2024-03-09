@@ -26,3 +26,10 @@
 #### How can i handle errors when sending a request ?
 - [Exception Handling Best Practices](https://www.slingacademy.com/article/python-requests-exception-handling-best-practices/)
 
+#### How can i import packages and subpackages ?
+- [stackoverflow](https://stackoverflow.com/questions/71449587/importing-packages-and-subpackages-in-python)
+
+#### ORM and connecting to DB
+- [Cockroach docs](https://www.cockroachlabs.com/docs/stable/build-a-python-app-with-cockroachdb-sqlalchemy)
+- [SQlAlcemy docs](https://docs.sqlalchemy.org/en/20/tutorial/dbapi_transactions.html)
+- [Toturial] (https://www.tutorialspoint.com/sqlalchemy/sqlalchemy_core_connecting_to_database.htm)
