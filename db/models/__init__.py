@@ -1,5 +1,5 @@
 # """ Model base """
 
-# from .model_base import Base
+from .model_base import Base
 
-# from .models import *
+from .models import *

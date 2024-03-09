@@ -33,3 +33,12 @@
 - [Cockroach docs](https://www.cockroachlabs.com/docs/stable/build-a-python-app-with-cockroachdb-sqlalchemy)
 - [SQlAlcemy docs](https://docs.sqlalchemy.org/en/20/tutorial/dbapi_transactions.html)
 - [Toturial] (https://www.tutorialspoint.com/sqlalchemy/sqlalchemy_core_connecting_to_database.htm)
+
+#### What does double underscore (__) mean ?
+
+
+
+----
+### TODO: 
+- Open a pr to fix bugs 
+-- naming under resources folder

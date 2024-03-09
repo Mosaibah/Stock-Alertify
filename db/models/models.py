@@ -1,6 +1,9 @@
 from sqlalchemy import create_engine, text
 import os
 from dotenv import load_dotenv
+from model_base import Base
+from sqlalchemy.orm import sessionmaker
+
 
 load_dotenv()
 
@@ -13,6 +16,11 @@ try:
     with engine.connect() as conn:
         result = conn.execute(text("select 'hello world'"))
         print(result.all())
+    
+    Base.metadata.create_all(engine)
+
+    Session = sessionmaker(bind=engine)
+    session = Session()
         
 except Exception as err:
     print("Failed to connect to database.")
