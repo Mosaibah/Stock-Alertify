@@ -36,9 +36,11 @@
 
 #### What does double underscore (__) mean ?
 
+#### What is the diff between list and array
 
 
 ----
 ### TODO: 
 - Open a pr to fix bugs 
 -- naming under resources folder
+-- error article comma

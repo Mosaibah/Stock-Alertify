@@ -1,10 +1,12 @@
 """ Alert Model """
-from sqlalchemy import Column, String, Float, Date, datetime
+from sqlalchemy import Column, String, Float, Date
 from sqlalchemy.dialects.postgresql import UUID
-import uuid
 from db.models.model_base import Base
+from datetime import datetime
+import uuid
 
-class Alert(Base):
+
+class   Alert(Base):
     __tablename__ = "alerts"
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
