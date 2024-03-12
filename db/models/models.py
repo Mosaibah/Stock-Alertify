@@ -10,3 +10,5 @@ url = "cockroachdb://" + os.getenv('DB_USER') + "@" + os.getenv("DB_HOST") + ":"
 engine = create_engine(url, connect_args={"application_name": "stock_alertify"})
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+

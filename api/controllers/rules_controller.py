@@ -1,8 +1,9 @@
 from resources.alerts.alert_service import list_alerts
+from resources.rules.rule_service import list_rules
 from fastapi import APIRouter, HTTPException, Depends
 from db.models.models import SessionLocal
 from sqlalchemy.orm import Session
-from resources.alerts.alert_model import Alert
+
 from typing import List
 
 
@@ -24,9 +25,18 @@ def get_db():
 
 def alerts(db: Session = Depends(get_db)):
     try:
-        all_rules = list_alerts(db)
-        return all_rules
+        return list_alerts(db)
 
     except Exception as err:
         print("Failed to connect to database.")
         print(f"{err}")
+
+
+def get_rules(db: Session = Depends(get_db)):
+    try:
+        return list_rules(db)
+
+    except Exception as err:
+        print("Failed to connect to database.")
+        print(f"{err}")
+
