@@ -1,6 +1,8 @@
 from fastapi import FastAPI
-from api.routes import router as market_router
+from api.routes import init_routes
+from uvicorn import run
 
-app = FastAPI()
+app = init_routes(FastAPI())
 
-app.include_router(market_router)
+if __name__ == "__main__":
+    run("api.main:app")

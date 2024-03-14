@@ -2,9 +2,15 @@ import os
 import requests
 from fastapi import HTTPException
 from dotenv import load_dotenv
+from fastapi import APIRouter, HTTPException, Depends
+
 
 load_dotenv()
 
+router = APIRouter()
+
+
+@router.get("/")
 async def get_market_price():
     url = "https://twelve-data1.p.rapidapi.com/price"
     querystring = {"symbol":"AAPL, MSFT, GOOG, AMZN, META","format":"json","outputsize":"30"}

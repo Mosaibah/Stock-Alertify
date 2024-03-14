@@ -1,25 +1,11 @@
-from fastapi import APIRouter
-from api.controllers.market_controller import get_market_price
-from api.controllers.rules_controller import alerts, get_rules
-
-router = APIRouter()
-
-# Returns the latest market prices for mentioned symbols.
-router.get("/market-price", response_model=dict)(get_market_price)
-
-# Returns all alerts.
-router.get("/alerts")(alerts)
+from api.controllers.market_controller import get_market_price, router as market_router
+from api.controllers.rules_controller import  get_rules, router as rules_router
+from api.controllers.alerts_controller import  router as alerts_router
 
 
-# Returns all alert rules.
-router.get("/alert-rules")(get_rules)
-
-# POST /alert-rules
-# Creates an alert rule with the following properties: name, threshold price, and symbol.
-
-# PATCH /alert-rules/{id}
-# Update an alert rule by ID.
-
-# DELETE /alert-rules/{id}
-# Deletes an alert rule by ID.
+def init_routes(app):
+    app.include_router(market_router, prefix="/market-price", tags=["Market"])
+    app.include_router(rules_router, prefix="/alert-rules", tags=["Alert-Rules"])
+    app.include_router(alerts_router, prefix="/alerts", tags=["Alert"])
+    return app
 
