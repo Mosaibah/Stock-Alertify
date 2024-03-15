@@ -70,3 +70,5 @@ it's a financial data so will do a soft delete
 - [ ] handle errors
 - [ ] write a proper comments for the documentation
 - [ ] select only needed columns
+- [ ] make sure to use pydantic models in all responses
+- [ ] implement a proper logging
