@@ -1,5 +1,5 @@
 from resources.alerts.alert_service import list_alerts
-from resources.rules.rule_service import list_rules, create_rule_svc, update_rule_svc
+from resources.rules.rule_service import *
 from fastapi import APIRouter, HTTPException, Depends
 from db.models.models import SessionLocal
 from sqlalchemy.orm import Session
@@ -47,6 +47,17 @@ def create_rule(rule: RuleCreate, db: Session = Depends(get_db)):
 def update_rule(rule_id: str, rule: RuleUpdate, db: Session = Depends(get_db)):
     try:
         return update_rule_svc(db, rule_id, rule)
+
+    except Exception as err:
+        print("Failed while creating rule")
+        print(f"{err}")
+        raise HTTPException(status_code=400, detail=f"Failed while creating rule: {err}")
+
+
+@router.delete("/{rule_id}")
+def delete_rule(rule_id: str, db: Session = Depends(get_db)):
+    try:
+        return delete_rule_svc(db, rule_id)
 
     except Exception as err:
         print("Failed while creating rule")

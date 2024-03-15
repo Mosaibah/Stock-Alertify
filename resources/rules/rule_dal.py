@@ -9,7 +9,7 @@ from resources.rules.rule_schema import RuleUpdate
 def list_rules_db(db_session):
     # TODO: implement pagination
 
-    rules = db_session.query(Rule).all()
+    rules = db_session.query(Rule).filter(Rule.is_deleted.is_(None)).all()
     return rules
 
 
@@ -44,3 +44,19 @@ def update_rule_db(db_session, rule_id: str, rule: RuleUpdate):
 
     except Exception as err:
         return None, str(err)
+
+
+def delete_rule_db(db_session, rule_id: str):
+    try:
+        rule_object = db_session.query(Rule).filter(Rule.id == rule_id).first()
+        if rule_object is None:
+            return None, "Rule not found"
+
+        rule_object.is_deleted = True
+        db_session.commit()
+        db_session.refresh(rule_object)
+        return "Rule deleted successfully"
+
+    except Exception as err:
+        return None, str(err)
+

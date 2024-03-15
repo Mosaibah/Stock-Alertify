@@ -1,4 +1,12 @@
-### Challenges
+
+## Design choices
+
+#### Do I need to delete the from db when deleting?
+- _soft deletion by default, unless there's some reason not to._ [Senior Engineer](https://news.ycombinator.com/item?id=32156009)
+- There is no reason to delete the row, we don't know what will happen, especially 
+it's a financial data so will do a soft delete
+
+## Challenges
 
 #### What does req.txt mean in Python ?
 - It's file that contains all libraries and dependancies in the project, so that the other contributers can install it with no conflicts
@@ -61,3 +69,4 @@
 
 - [ ] handle errors
 - [ ] write a proper comments for the documentation
+- [ ] select only needed columns

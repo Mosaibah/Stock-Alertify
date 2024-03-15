@@ -2,7 +2,7 @@
 """_summary_
 this file to write any business logic for the Alert Rules
 """
-from resources.rules.rule_dal import list_rules_db, create_rule_db, update_rule_db
+from resources.rules.rule_dal import *
 
 
 def list_rules(db_session):
@@ -15,3 +15,7 @@ def create_rule_svc(db_session, rule):
 
 def update_rule_svc(db_session, rule_id, rule):
     return update_rule_db(db_session, rule_id, rule)
+
+
+def delete_rule_svc(db_session, rule_id):
+    return delete_rule_db(db_session, rule_id)

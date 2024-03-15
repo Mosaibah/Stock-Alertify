@@ -1,5 +1,5 @@
 """ Alert Rule Model """
-from sqlalchemy import Column, String, Float, Date
+from sqlalchemy import Column, String, Float, Date, BOOLEAN
 from sqlalchemy.dialects.postgresql import UUID
 from db.models.model_base import Base
 from datetime import datetime
@@ -13,4 +13,5 @@ class Rule(Base):
     name = Column(String, nullable=False)
     threshold_price = Column(Float, nullable=False)
     symbol = Column(String, nullable=False)
+    is_deleted = Column(BOOLEAN, nullable=True)
     created_at = Column(Date, nullable=False, default=datetime.now())
