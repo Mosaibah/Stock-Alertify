@@ -35,12 +35,29 @@
 - [Toturial] (https://www.tutorialspoint.com/sqlalchemy/sqlalchemy_core_connecting_to_database.htm)
 
 #### What does double underscore (__) mean ?
+- **Single leading underscore:**  internal use only
+- **Single trailing underscore:** Avoids naming conflicts with Python keywords
+- **Double leading underscore:** Triggers name mangling 
+- **Double leading and trailing underscore:** special attributes and methods that Python provides
+- **Single underscore:** temporary variable
+- [Article](https://realpython.com/python-double-underscore/)
 
-#### What is the diff between list and array
+#### What is the difference between list and array ?
+- List: different types
+- Array: same type
 
+#### FastAPI resources
+- [Docs](https://fastapi.tiangolo.com/tutorial/body-fields/)
+- [How to Use FastAPI](https://www.youtube.com/watch?v=SORiTsvnU28)
+- 
 
 ----
 ### TODO: 
 - Open a pr to fix bugs 
--- naming under resources folder
--- error article comma
+  - naming under resources folder
+  - error article comma
+  
+<br> <br>
+
+- [ ] handle errors
+- [ ] write a proper comments for the documentation
