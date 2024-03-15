@@ -57,7 +57,17 @@ it's a financial data so will do a soft delete
 #### FastAPI resources
 - [Docs](https://fastapi.tiangolo.com/tutorial/body-fields/)
 - [How to Use FastAPI](https://www.youtube.com/watch?v=SORiTsvnU28)
-- 
+
+#### RabbitMQ resources
+- [Hussain Nasser (Crash Course)](https://youtu.be/Cie5v59mrTg?si=kzv--8jM_HIMsYbh)
+- [What is a Message Queue and When should you use Messaging Queue Systems](https://youtu.be/W4_aGb_MOls?si=4SufosdHeIaz2xXR)
+
+#### Meaning of if __name__ == "__main__"
+- Code will only be executed if the script is run as the main program
+- [Article](https://www.theserverside.com/tip/What-does-the-Python-if-name-equals-main-construct-do#:~:text=to%20the%20console.-,The%20if%20__name__%20%3D%3D%20%22__main__%22%3A,it%20would%20not%20execute%20automatically.)
+
+#### What does Event Looping means?
+
 
 ----
 ### TODO: 
