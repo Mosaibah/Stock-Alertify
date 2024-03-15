@@ -9,7 +9,6 @@ from resources.rules.rule_schema import RuleCreate, RuleUpdate
 router = APIRouter()
 
 
-# Dependency
 def get_db():
     db = SessionLocal()
     try:
@@ -55,7 +54,7 @@ def update_rule(rule_id: str, rule: RuleUpdate, db: Session = Depends(get_db)):
 
 
 @router.delete("/{rule_id}")
-def delete_rule(rule_id: str, db: Session = Depends(get_db)):
+def delete_rule(rule_id: str, db: Session = Depends(get_db)) -> str:
     try:
         return delete_rule_svc(db, rule_id)
 

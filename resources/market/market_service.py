@@ -8,7 +8,7 @@ from resources.market.market_schema import Market
 from fastapi import HTTPException
 
 
-def get_market_data():
+def get_market_data() -> list[Market]:
     url = "https://twelve-data1.p.rapidapi.com/price"
 
     # TODO: make it dynamic

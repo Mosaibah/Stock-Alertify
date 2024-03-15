@@ -67,8 +67,8 @@ it's a financial data so will do a soft delete
   
 <br> <br>
 
-- [ ] handle errors
+- [ ] improve the error handling
 - [ ] write a proper comments for the documentation
 - [ ] select only needed columns
-- [ ] make sure to use pydantic models in all responses
+- [x] make sure to use pydantic models in all responses
 - [ ] implement a proper logging
