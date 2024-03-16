@@ -82,6 +82,7 @@ it's a financial data so will do a soft delete
 - [ ] select only needed columns
 - [x] make sure to use pydantic models in all responses
 - [ ] implement a proper logging
+- [ ] populate threshold_exceeded when creating a new rule
 
 -----
 ### Thinking:
@@ -90,3 +91,19 @@ it's a financial data so will do a soft delete
 - then the consumer will consume the message and will do two things:
   - print the message
   - insert into alert table
+
+
+market_data
+{
+  "symbol": "AAPL",
+  "price": 100,
+}
+
+rules
+{
+  {
+  "symbol": "AAPL",
+  "threshold": 120,
+  ""
+  }
+}
