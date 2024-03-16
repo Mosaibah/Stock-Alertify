@@ -1,4 +1,6 @@
 # Create a celery app object to start your workers
+import logging
+
 from celery import Celery
 from resources.market.market_service import get_market_data
 from dotenv import load_dotenv
@@ -8,7 +10,7 @@ from sqlalchemy.orm import Session
 from resources.rules.rule_model import Rule
 from resources.alerts.alert_service import create_alert
 from resources.alerts.alert_model import Alert
-
+from core.messaging import send_message
 
 load_dotenv()
 
@@ -16,8 +18,15 @@ load_dotenv()
 def create_celery_app():
     app = Celery(
         'worker',
-        broker='amqp://guest:guest@rabbitmq-node:5672/'
+        broker='amqp://guest:guest@localhost:5672/'
     )
+    app.conf.beat_schedule = {
+        'every-20-seconds': {
+            'task': 'worker.app.process_market_rules_task',
+            'schedule': 20
+        },
+    }
+    app.conf.timezone = 'UTC'
     return app
 
 
@@ -43,6 +52,7 @@ def get_db():
 @celery_app.task
 def process_market_rules_task():
     try:
+        logging.log(logging.INFO, "processing_market_rules_task started")
         print("processing_market_rules_task started")
 
         print("get_market_data started")
@@ -60,20 +70,16 @@ def process_market_rules_task():
                 if market.symbol == rule.symbol:
                     if rule.threshold_exceeded:
                         if market.price > rule.threshold_price:
-                            print(f"Publishing THRESHOLD_ALERT for {rule.symbol} and price {market.price}, and threshold {rule.threshold_price}")
-                            new = create_alert(Alert(name=rule.name, threshold_price=rule.threshold_price, symbol=rule.symbol), db_session=db)
+                            msg = f"Publishing THRESHOLD_ALERT for {rule.symbol} and price {market.price}, and threshold {rule.threshold_price}"
+                            send_message("morning", msg, alert=Alert(name=rule.name, threshold_price=rule.threshold_price, symbol=rule.symbol))
                     else:
                         if market.price < rule.threshold_price:
-                            print(f"Publishing THRESHOLD_ALERT for {rule.symbol} and price {market.price} and threshold {rule.threshold_price}")
-                            new = create_alert(Alert(name=rule.name, threshold_price=rule.threshold_price, symbol=rule.symbol), db_session=db)
-
-
-
-
+                            msg = f"Publishing THRESHOLD_ALERT for {rule.symbol} and price {market.price}, and threshold {rule.threshold_price}"
+                            send_message("morning", msg, alert=Alert(name=rule.name, threshold_price=rule.threshold_price, symbol=rule.symbol))
 
 
     except Exception as err:
         print(f"Failed to process market rules: {err}")
 
 
-process_market_rules_task()
+# process_market_rules_task()
