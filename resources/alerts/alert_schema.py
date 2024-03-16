@@ -2,6 +2,10 @@
 """_summary_
 This file to abstract any validation logic for the Alerts
 """
+from pydantic import BaseModel
 
-# from pydantic import BaseModel, Field
-# import uuid
+
+class AlertCreate(BaseModel):
+    name: str
+    threshold_price: float
+    symbol: str

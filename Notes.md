@@ -82,3 +82,11 @@ it's a financial data so will do a soft delete
 - [ ] select only needed columns
 - [x] make sure to use pydantic models in all responses
 - [ ] implement a proper logging
+
+-----
+### Thinking:
+- i'll have two things (symbol, current_price, threshold_price)
+- the event will trigger with these three things, and the event will be a message in the queue
+- then the consumer will consume the message and will do two things:
+  - print the message
+  - insert into alert table
