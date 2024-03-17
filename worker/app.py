@@ -39,27 +39,38 @@ celery_app = create_celery_app()
 def process_market_rules_task():
     try:
         logging.log(logging.INFO, "processing_market_rules_task started")
-        print("processing_market_rules_task started")
+        logging.log(logging.INFO, "processing_market_rules_task started")
 
-        print("get_market_data started")
+        logging.log(logging.INFO, "get_market_data started")
         market_data = get_market_data()
-        print("get_market_data ended")
+        logging.log(logging.INFO, "get_market_data ended")
 
-        print("list_rules started")
+        logging.log(logging.INFO, "list_rules started")
         rules: list[Rule] = list_rules(db_session=SessionLocal())
-        print("list_rules ended")
+        logging.log(logging.INFO, "list_rules ended")
+
+        # index rules
+        rules_by_symbol = {}
+        for rule in rules:
+            if rule.symbol not in rules_by_symbol:
+                rules_by_symbol[rule.symbol] = []
+            rules_by_symbol[rule.symbol].append(rule)
 
         for market in market_data:
-            for rule in rules:
-                if market.symbol == rule.symbol:
+            if market.symbol in rules_by_symbol:
+                for rule in rules_by_symbol[market.symbol]:
+                    should_publish_alert = False
                     if rule.threshold_exceeded:
                         if market.price > rule.threshold_price:
-                            msg = f"Publishing THRESHOLD_ALERT for {rule.symbol} and price {market.price}, and threshold {rule.threshold_price}"
-                            send_message("morning", msg, alert=Alert(name=rule.name, threshold_price=rule.threshold_price, symbol=rule.symbol))
+                            should_publish_alert = True
                     else:
                         if market.price < rule.threshold_price:
-                            msg = f"Publishing THRESHOLD_ALERT for {rule.symbol} and price {market.price}, and threshold {rule.threshold_price}"
-                            send_message("morning", msg, alert=Alert(name=rule.name, threshold_price=rule.threshold_price, symbol=rule.symbol))
+                            should_publish_alert = True
 
+                    if should_publish_alert:
+                        msg = f"Publishing THRESHOLD_ALERT for {rule.symbol} and price {market.price}, and threshold {rule.threshold_price}"
+                        logging.log(logging.INFO, msg)
+                        send_message("alert_queue", msg, alert=Alert(name=rule.name, threshold_price=rule.threshold_price,
+                                                                 symbol=rule.symbol))
     except Exception as err:
         print(f"Failed to process market rules: {err}")

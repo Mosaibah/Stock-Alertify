@@ -28,9 +28,9 @@ def on_event(ch, method, properties, body):
 if __name__ == "__main__":
     connection = init_subscriber()
     channel = connection.channel()
-    channel.queue_declare(queue='morning')
+    channel.queue_declare(queue='alert_queue')
 
-    channel.basic_consume(queue='morning', on_message_callback=on_event)
+    channel.basic_consume(queue='alert_queue', on_message_callback=on_event)
 
     print('Waiting for messages')
     channel.start_consuming()
