@@ -24,6 +24,12 @@ receiving alerts if stocks cross those thresholds.
 
 ### Setup
 - work in progres
+1. Clone the repository
+2. set env variables (api-key)
+3. run makefile 
+```bash
+make up
+```
 
 ### Connecting with Retool
 - work in progres

@@ -160,4 +160,4 @@ cython_debug/
 .idea/
 
 ### env
-stock-alertify-env/*
+stock-alertify-env*/

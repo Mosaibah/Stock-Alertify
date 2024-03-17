@@ -14,7 +14,7 @@ def list_rules_db(db_session) -> list[Rule]:
     return rules
 
 
-def create_rule_db(rule, db_session) -> Rule:
+def create_rule_db(db_session, rule) -> Rule:
     try:
         rule_object = Rule(name=rule.name, threshold_price=rule.threshold_price,
                            symbol=rule.symbol, threshold_exceeded=rule.threshold_exceeded)
