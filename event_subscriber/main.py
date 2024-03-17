@@ -4,11 +4,18 @@ import pika
 from resources.alerts.alert_service import create_alert
 from resources.alerts.alert_model import Alert
 from db.models.models import SessionLocal
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 
 def init_subscriber():
-    credentials = pika.PlainCredentials('guest', 'guest')
-    parameters = pika.ConnectionParameters('localhost', 5672, '/', credentials)
+    user = os.getenv('RABBITMQ_USER')
+    password = os.getenv('RABBITMQ_PASSWORD')
+    host = os.getenv('RABBITMQ_HOST')
+    credentials = pika.PlainCredentials(user, password)
+    parameters = pika.ConnectionParameters(host, 5672, '/', credentials)
     return pika.BlockingConnection(parameters)
 
 
