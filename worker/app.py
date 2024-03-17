@@ -6,9 +6,7 @@ from resources.market.market_service import get_market_data
 from dotenv import load_dotenv
 from resources.rules.rule_service import list_rules
 from db.models.models import SessionLocal
-from sqlalchemy.orm import Session
 from resources.rules.rule_model import Rule
-from resources.alerts.alert_service import create_alert
 from resources.alerts.alert_model import Alert
 from core.messaging import send_message
 
@@ -36,18 +34,6 @@ def create_celery_app():
 
 celery_app = create_celery_app()
 
-# TODO: import it from db
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    except Exception as err:
-        print("Failed to connect to database.")
-        print(f"{err}")
-        raise
-    finally:
-        db.close()
-
 
 @celery_app.task
 def process_market_rules_task():
@@ -59,10 +45,8 @@ def process_market_rules_task():
         market_data = get_market_data()
         print("get_market_data ended")
 
-        db: Session = SessionLocal()
-
         print("list_rules started")
-        rules: list[Rule] = list_rules(db_session=db)
+        rules: list[Rule] = list_rules(db_session=SessionLocal())
         print("list_rules ended")
 
         for market in market_data:
@@ -77,9 +61,5 @@ def process_market_rules_task():
                             msg = f"Publishing THRESHOLD_ALERT for {rule.symbol} and price {market.price}, and threshold {rule.threshold_price}"
                             send_message("morning", msg, alert=Alert(name=rule.name, threshold_price=rule.threshold_price, symbol=rule.symbol))
 
-
     except Exception as err:
         print(f"Failed to process market rules: {err}")
-
-
-# process_market_rules_task()

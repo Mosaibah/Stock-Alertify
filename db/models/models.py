@@ -12,3 +12,13 @@ engine = create_engine(url, connect_args={"application_name": "stock_alertify"})
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    except Exception as err:
+        print("Failed to connect to database.")
+        print(f"{err}")
+        raise
+    finally:
+        db.close()

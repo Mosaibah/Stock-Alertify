@@ -1,24 +1,9 @@
 from resources.alerts.alert_service import list_alerts
-from resources.rules.rule_service import list_rules, create_rule_svc
-from fastapi import APIRouter, HTTPException, Depends
-from db.models.models import SessionLocal
+from fastapi import APIRouter, Depends
+from db.models.models import get_db
 from sqlalchemy.orm import Session
 
-
 router = APIRouter()
-
-
-# Dependency
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    except Exception as err:
-        print("Failed to connect to database.")
-        print(f"{err}")
-        raise
-    finally:
-        db.close()
 
 
 @router.get("/")

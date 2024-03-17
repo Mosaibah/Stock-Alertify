@@ -4,20 +4,6 @@ import pika
 from resources.alerts.alert_service import create_alert
 from resources.alerts.alert_model import Alert
 from db.models.models import SessionLocal
-from sqlalchemy.orm import Session
-
-
-# TODO: import it from db
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    except Exception as err:
-        print("Failed to connect to database.")
-        print(f"{err}")
-        raise
-    finally:
-        db.close()
 
 
 def init_subscriber():
@@ -33,9 +19,8 @@ def on_event(ch, method, properties, body):
     alert_json = json.loads(body)['alert']
 
     try:
-        db: Session = SessionLocal()
         create_alert(alert=Alert(name=alert_json['name'], threshold_price=alert_json['threshold_price'],
-                                 symbol=alert_json['symbol']), db_session=db)
+                                 symbol=alert_json['symbol']), db_session=SessionLocal())
     except Exception as err:
         print(f"Failed to create alert: {err}")
 
