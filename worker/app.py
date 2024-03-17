@@ -39,7 +39,6 @@ celery_app = create_celery_app()
 def process_market_rules_task():
     try:
         logging.log(logging.INFO, "processing_market_rules_task started")
-        logging.log(logging.INFO, "processing_market_rules_task started")
 
         logging.log(logging.INFO, "get_market_data started")
         market_data = get_market_data()

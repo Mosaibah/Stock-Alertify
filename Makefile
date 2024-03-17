@@ -5,7 +5,6 @@ down:
 run-api:
 	python3 -m venv stock-alertify-env-2 && \
 	. stock-alertify-env-2/bin/activate && \
-	cp .env.example .env && \
 	pip install -r requirements.txt && \
 	uvicorn api.main:app --reload
 
