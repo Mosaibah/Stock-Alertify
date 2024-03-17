@@ -16,7 +16,8 @@ def list_rules_db(db_session) -> list[Rule]:
 
 def create_rule_db(rule, db_session) -> Rule:
     try:
-        rule_object = Rule(name=rule.name, threshold_price=rule.threshold_price, symbol=rule.symbol)
+        rule_object = Rule(name=rule.name, threshold_price=rule.threshold_price,
+                           symbol=rule.symbol, threshold_exceeded=rule.threshold_exceeded)
         db_session.add(rule_object)
         db_session.commit()
         db_session.refresh(rule_object)
@@ -38,6 +39,8 @@ def update_rule_db(db_session, rule_id: str, rule: RuleUpdate) -> Rule:
             rule_object.threshold_price = rule.threshold_price
         if rule.symbol is not None:
             rule_object.symbol = rule.symbol
+        if rule.threshold_price is not None:
+            rule_object.threshold_price = rule.threshold_price
 
         db_session.commit()
         db_session.refresh(rule_object)

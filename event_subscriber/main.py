@@ -1,5 +1,4 @@
 import json
-
 import pika
 from resources.alerts.alert_service import create_alert
 from resources.alerts.alert_model import Alert
