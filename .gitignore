@@ -161,3 +161,4 @@ cython_debug/
 
 ### env
 stock-alertify-env*/
+celerybeat-schedule.db

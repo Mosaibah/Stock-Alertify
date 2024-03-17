@@ -79,7 +79,7 @@ it's a financial data so will do a soft delete
 - [ ] write a proper comments for the documentation
 - [ ] select only needed columns
 - [x] make sure to use pydantic models in all responses
-- [ ] implement a proper logging
+- [x] implement a proper logging
 - [x] populate threshold_exceeded when creating a new rule
 - [ ] store market data in the db
 

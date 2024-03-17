@@ -23,13 +23,26 @@ receiving alerts if stocks cross those thresholds.
 - work in progres
 
 ### Setup
-- work in progres
 1. Clone the repository
-2. set env variables (api-key)
-3. run makefile 
-```bash
-make up
-```
+2. write .env.example file
+3. run `cp .env.example .env`
+4. run `make up`
+
+### Running the API
+run `make api-run`
+
+### Start the consumer
+run `make `start-consumer`
+
+### Running the worker
+run `make start-worker`
+
+### Running the beat
+run `make start-beat`
+
+### Publish an event
+run `make publish-event`
+
 
 ### Connecting with Retool
 - work in progres

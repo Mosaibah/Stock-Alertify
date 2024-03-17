@@ -1,6 +1,6 @@
 # Create a celery app object to start your workers
 import logging
-
+from celery.schedules import crontab
 from celery import Celery
 from resources.market.market_service import get_market_data
 from dotenv import load_dotenv
@@ -21,7 +21,7 @@ def create_celery_app():
     app.conf.beat_schedule = {
         'every-20-seconds': {
             'task': 'worker.app.process_market_rules_task',
-            'schedule': 20
+            'schedule': crontab(minute='*/5'),
         },
     }
     app.conf.timezone = 'UTC'
