@@ -1,7 +1,7 @@
 
 ## Design choices
 
-#### Do I need to delete the from db when deleting?
+#### Do I need to delete the row db when deleting?
 - _soft deletion by default, unless there's some reason not to._ [Senior Engineer](https://news.ycombinator.com/item?id=32156009)
 - There is no reason to delete the row, we don't know what will happen, especially 
 it's a financial data so will do a soft delete
@@ -21,7 +21,7 @@ it's a financial data so will do a soft delete
 
 #### Should i use request library or http.client ?
 - http.client a standard library from Python (less intuitive, more control)
-- Reqest external library (Readable and concise)
+- Request external library (Readable and concise)
 - I'll go with request, because its simple
 
 
@@ -66,6 +66,7 @@ it's a financial data so will do a soft delete
 - Code will only be executed if the script is run as the main program
 - [Article](https://www.theserverside.com/tip/What-does-the-Python-if-name-equals-main-construct-do#:~:text=to%20the%20console.-,The%20if%20__name__%20%3D%3D%20%22__main__%22%3A,it%20would%20not%20execute%20automatically.)
 
+I have to deep dive into the core concepts and tools
 
 ----
 ### TODO: 

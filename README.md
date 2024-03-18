@@ -9,13 +9,18 @@ This project will allow users to retrieve the latest stock market prices and cre
 alert rules by setting a threshold price for the stock they are interested in and 
 receiving alerts if stocks cross those thresholds.
 
-
 ## Technology used
 
 - Web Server - FastAPI
 - ORM - SQLAlchemy
 - Database -  cockroachdb
 - Scheme Validation - Pydantic
+
+
+## High-Level Architecture
+
+![high-level.png](images%2Fhigh-level.png)
+
 
 
 ## Prerequisites
@@ -46,45 +51,19 @@ Follow these steps to set up your project locally:
 
 ## Usage
 
-### Running the API
+### Make Commands
 
-To start the API server, run:
+Check out this handy list of `make` commands
 
-```sh
-make run-api
-```
+| Command              | Action                      |
+|----------------------|-----------------------------|
+| `make up`            | Builds and starts docker compose |
+| `make run-api`       | Starts the API server       |
+| `make start-consumer`| Starts the consumer         |
+| `make start-worker`  | Starts the background worker |
+| `make start-beat`    | Starts the beat scheduler   |
+| `make publish-event` | Manually publishes an event |
 
-### Start the Consumer
-
-To start the consumer, run:
-
-```sh
-make start-consumer
-```
-
-### Running the Worker
-
-To start the background worker, run:
-
-```sh
-make start-worker
-```
-
-### Running the Beat Scheduler
-
-To start the beat scheduler, run:
-
-```sh
-make start-beat
-```
-
-### Publish an Event
-
-To manually publish an event, run:
-
-```sh
-make publish-event
-```
 
 ## API Endpoints
 
@@ -123,3 +102,6 @@ All contributions are welcome!
 
 ### Live Demo
 - work in progress
+
+
+[![wakatime](https://wakatime.com/badge/user/57a3d66d-3820-42b8-b270-09f4afc66b0a/project/018e19a3-b324-4f53-90a7-2f36d2654a91.svg)](https://wakatime.com/badge/user/57a3d66d-3820-42b8-b270-09f4afc66b0a/project/018e19a3-b324-4f53-90a7-2f36d2654a91)
