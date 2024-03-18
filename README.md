@@ -44,7 +44,7 @@ Follow these steps to set up your project locally:
    ```
 3. Open the `.env` file  and add your RapidAPI key to the RAPID_API_KEY field.
 4. Start Docker on your machine.
-5. Use the Makefile to build and start the services:
+5. Use the Makefile to build and start docker:
    ```sh
    make up
    ```

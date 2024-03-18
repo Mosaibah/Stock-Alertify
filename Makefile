@@ -29,10 +29,10 @@ start-consumer: set-env
 publish-event: set-env
 	$(VENV)/bin/python core/messaging.py
 
-run-worker: set-env
+start-worker: set-env
 	$(VENV)/bin/celery -A worker.app.celery_app worker --loglevel=info
 
-run-beat: set-env
+start-beat: set-env
 	$(VENV)/bin/celery -A worker.app.celery_app beat --loglevel=info
 
 set-env:
