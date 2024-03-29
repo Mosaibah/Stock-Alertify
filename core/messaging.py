@@ -6,7 +6,7 @@ from resources.alerts.alert_model import Alert
 
 
 def send_message(queue, message, alert: Alert = None):
-    with Connection('localhost', 'guest', 'guest') as connection:
+    with Connection('borker', 'guest', 'guest') as connection:
         channel = connection.channel()
         channel.queue.declare(queue=queue)
         message_content = {

@@ -16,12 +16,12 @@ load_dotenv()
 def create_celery_app():
     app = Celery(
         'worker',
-        broker='amqp://guest:guest@localhost:5672/'
+        broker='amqp://guest:guest@broker:5672/'
     )
     app.conf.beat_schedule = {
-        'every-20-seconds': {
+        'every-60-seconds': {
             'task': 'worker.app.process_market_rules_task',
-            'schedule': crontab(minute='*/5'),
+            'schedule': crontab(minute='*/1'),
         },
     }
     app.conf.timezone = 'UTC'
