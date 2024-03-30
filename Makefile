@@ -1,12 +1,4 @@
-SHELL := /bin/bash
-VENV := stock-alertify-env-2
-VENV_BIN := $(VENV)/bin
-PYTHON := $(VENV_BIN)/python
-PIP := $(VENV_BIN)/pip
-
-export PYTHONPATH := $(shell pwd)
-
-.PHONY: up down run-api start-consumer publish-event run-worker run-beat setup-env install-deps
+.PHONY: up down consumer-logs worker-logs beat-logs publish-event
 
 up:
 	./dev_setup/up.sh
@@ -22,3 +14,6 @@ worker-logs:
 
 beat-logs:
 	docker logs -f beat_node
+
+publish-event:
+	docker exec -it fastapi_app_node /bin/bash -c "python3 core/messaging.py"

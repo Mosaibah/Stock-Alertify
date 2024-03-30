@@ -6,6 +6,7 @@ from db.models.models import SessionLocal
 from dotenv import load_dotenv
 import os
 
+
 load_dotenv()
 
 
@@ -38,5 +39,5 @@ if __name__ == "__main__":
 
     channel.basic_consume(queue='alert_queue', on_message_callback=on_event)
 
-    print('Waiting for messages')
+    print("print: Waiting for messages")
     channel.start_consuming()

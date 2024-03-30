@@ -68,6 +68,12 @@ it's a financial data so will do a soft delete
 
 #### How do i manage secrets in docker and docker-compose ?
 
+#### The consumer_node failed to start
+The `consumer_node` failed to start because there was a problem connecting to RabbitMQ. 
+Since RabbitMQ takes time to fully run, I added a health check to the RabbitMQ service in the docker-compose file
+reference: [connecting-to-rabbitmq-container-with-docker-compose](https://stackoverflow.com/questions/53031439/connecting-to-rabbitmq-container-with-docker-compose)
+
+<br>
 I have to deep dive into the core concepts and tools
 
 
@@ -91,6 +97,8 @@ I have to deep dive into the core concepts and tools
 - [ ] update readme
 - [ ] create a new diagrams
 - [ ] set auto commit to true, and update the queries
+- [ ] use Taskfile instead of Makefile
+- [ ] fix mount issue in docker-compose 
 
 -----
 ### Thinking:

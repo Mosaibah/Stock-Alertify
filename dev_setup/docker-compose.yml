@@ -1,4 +1,5 @@
 version: "3.9"
+name: "stock-alertify"
 
 networks:
   internal_nw:
@@ -37,6 +38,11 @@ services:
       - RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS=-rabbit loopback_users "none"
     command: >
       sh -c "rabbitmq-server"
+    healthcheck:
+      test: [ "CMD", "rabbitmqctl", "status"]
+      interval: 5s
+      timeout: 10s
+      retries: 6
     networks:
       - internal_nw
 
@@ -94,6 +100,7 @@ services:
     build: ../
     container_name: consumer_node
     command: python3 event_subscriber/main.py
+    tty: true
     volumes:
       - ../app:/app
     env_file:
@@ -101,7 +108,9 @@ services:
     environment:
       - PYTHONPATH=/code
     depends_on:
-      - database
-      - broker
+        broker:
+          condition: service_healthy
+        database:
+          condition: service_started
     networks:
       - internal_nw

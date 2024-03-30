@@ -55,14 +55,14 @@ Follow these steps to set up your project locally:
 
 Check out this handy list of `make` commands
 
-| Command              | Action                      |
-|----------------------|-----------------------------|
-| `make up`            | Builds and starts docker compose |
-| `make run-api`       | Starts the API server       |
-| `make start-consumer`| Starts the consumer         |
-| `make start-worker`  | Starts the background worker |
-| `make start-beat`    | Starts the beat scheduler   |
-| `make publish-event` | Manually publishes an event |
+| Command              | Action                                         |
+|----------------------|------------------------------------------------|
+| `make up`            | Builds and starts docker compose               |
+| `make down`          | Stops and removes the Docker Compose services. |
+| `make worker-logs`   | Display logs from the worker service           |
+| `make beat-logs`     | Display logs from the beat service             |
+| `make consumer-logs` | Display logs from the consumer service         |
+| `make publish-event` | Publish a new event                            |
 
 
 ## API Endpoints

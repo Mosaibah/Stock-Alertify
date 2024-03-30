@@ -22,6 +22,12 @@ CREATE TABLE IF NOT EXISTS rules
 );
 
 
-INSERT INTO rules (name, symbol, threshold_price, threshold_exceeded) VALUES ('Apple Inc', 'AAPL', 173.00, True), ('Microsoft Corp', 'MSFT', 425.22, True);
-INSERT INTO rules (name, symbol, threshold_price) VALUES ('Alphabet Inc Class C', 'GOOG', 144.34), ('Amazon.com Inc', 'AMZN', 178.75),
-                                                               ('Meta Platforms Inc', 'META', 491.83);
+INSERT INTO rules (name, symbol, threshold_price, threshold_exceeded) VALUES
+('Apple Inc', 'AAPL', 173.00, True),
+('Microsoft Corp', 'MSFT', 425.22, True);
+
+
+INSERT INTO rules (name, symbol, threshold_price) VALUES
+('Alphabet Inc Class C', 'GOOG', 144.34),
+('Amazon.com Inc', 'AMZN', 178.75),
+('Meta Platforms Inc', 'META', 491.83);
