@@ -9,14 +9,19 @@ from db.models.models import SessionLocal
 from resources.rules.rule_model import Rule
 from resources.alerts.alert_model import Alert
 from core.messaging import send_message
+import os
 
 load_dotenv()
+
+user = os.getenv('RABBITMQ_USER')
+password = os.getenv('RABBITMQ_PASSWORD')
+host = os.getenv('RABBITMQ_HOST')
 
 
 def create_celery_app():
     app = Celery(
         'worker',
-        broker='amqp://guest:guest@broker:5672/'
+        broker='amqp://'+user+':'+password+'@'+host+':5672/'
     )
     app.conf.beat_schedule = {
         'every-60-seconds': {

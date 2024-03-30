@@ -43,10 +43,43 @@ services:
   fastapi_app:
     build: ../
     container_name: fastapi_app_node
+    command: uvicorn api.main:app --host 0.0.0.0 --port 8000
     volumes:
       - ../app:/app
     ports:
       - "8005:8000"
+    env_file:
+      - ../.env
+    environment:
+      - PYTHONPATH=/code
+    depends_on:
+      - database
+      - broker
+    networks:
+      - internal_nw
+
+  worker:
+    build: ../
+    container_name: worker_node
+    command: celery -A worker.app.celery_app worker --loglevel=info
+    volumes:
+      - ../app:/app
+    env_file:
+      - ../.env
+    environment:
+      - PYTHONPATH=/code
+    depends_on:
+      - database
+      - broker
+    networks:
+      - internal_nw
+
+  beat:
+    build: ../
+    container_name: beat_node
+    command: celery -A worker.app.celery_app beat --loglevel=info
+    volumes:
+      - ../app:/app
     env_file:
       - ../.env
     environment:
