@@ -14,30 +14,11 @@ up:
 down:
 	./dev_setup/down.sh
 
-setup-env:
-	python3 -m venv $(VENV)
+consumer-logs:
+	docker logs -f consumer_node
 
-install-deps: setup-env
-	$(VENV)/bin/pip install -r requirements.txt
+worker-logs:
+	docker logs -f worker_node
 
-run-api: install-deps
-	$(VENV)/bin/uvicorn api.main:app --reload
-
-start-consumer: set-env
-	$(VENV)/bin/python event_subscriber/main.py
-
-publish-event: set-env
-	$(VENV)/bin/python core/messaging.py
-
-start-worker: set-env
-	$(VENV)/bin/celery -A worker.app.celery_app worker --loglevel=info
-
-start-beat: set-env
-	$(VENV)/bin/celery -A worker.app.celery_app beat --loglevel=info
-
-set-env:
-	@if [ -d "$(VENV)" ]; then \
-		 . $(VENV)/bin/activate; \
-	else \
-		echo "Virtual environment not found. Run 'make setup-env' first."; \
-	fi
+beat-logs:
+	docker logs -f beat_node

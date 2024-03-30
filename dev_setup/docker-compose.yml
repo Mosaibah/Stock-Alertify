@@ -89,3 +89,19 @@ services:
       - broker
     networks:
       - internal_nw
+
+  consumer:
+    build: ../
+    container_name: consumer_node
+    command: python3 event_subscriber/main.py
+    volumes:
+      - ../app:/app
+    env_file:
+      - ../.env
+    environment:
+      - PYTHONPATH=/code
+    depends_on:
+      - database
+      - broker
+    networks:
+      - internal_nw

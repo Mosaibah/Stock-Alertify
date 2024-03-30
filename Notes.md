@@ -25,10 +25,10 @@ it's a financial data so will do a soft delete
 - I'll go with request, because its simple
 
 
-#### What is the naming convesion for function ?
+#### What is the naming convention for function ?
 - snake_case [the Style Guide for Python Code](https://pep8.org/)
 
-#### How can i handle the enviroment varialbes ?
+#### How can i handle the environment variables ?
 - [Python Environment Variables](https://developer.vonage.com/en/blog/python-environment-variables-a-primer)
 
 #### How can i handle errors when sending a request ?
@@ -75,7 +75,6 @@ I have to deep dive into the core concepts and tools
 ### TODO: 
 - Open a pr to fix bugs 
   - naming under resources folder
-  - error article comma
   
 <br> <br>
 
@@ -87,6 +86,11 @@ I have to deep dive into the core concepts and tools
 - [x] populate threshold_exceeded when creating a new rule
 - [ ] store market data in the db
 - [ ] use HashiCorp Vault for secrets management
+- [ ] update seed data
+- [ ] fix alert repetition problem
+- [ ] update readme
+- [ ] create a new diagrams
+- [ ] set auto commit to true, and update the queries
 
 -----
 ### Thinking:
@@ -95,19 +99,3 @@ I have to deep dive into the core concepts and tools
 - then the consumer will consume the message and will do two things:
   - print the message
   - insert into alert table
-
-
-market_data
-{
-  "symbol": "AAPL",
-  "price": 100,
-}
-
-rules
-{
-  {
-  "symbol": "AAPL",
-  "threshold": 120,
-  ""
-  }
-}

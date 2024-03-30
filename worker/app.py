@@ -24,9 +24,9 @@ def create_celery_app():
         broker='amqp://'+user+':'+password+'@'+host+':5672/'
     )
     app.conf.beat_schedule = {
-        'every-60-seconds': {
+        'every-30-minutes': {
             'task': 'worker.app.process_market_rules_task',
-            'schedule': crontab(minute='*/1'),
+            'schedule': crontab(minute='*/30'),
         },
     }
     app.conf.timezone = 'UTC'
