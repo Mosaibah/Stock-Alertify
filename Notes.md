@@ -73,6 +73,10 @@ The `consumer_node` failed to start because there was a problem connecting to Ra
 Since RabbitMQ takes time to fully run, I added a health check to the RabbitMQ service in the docker-compose file
 reference: [connecting-to-rabbitmq-container-with-docker-compose](https://stackoverflow.com/questions/53031439/connecting-to-rabbitmq-container-with-docker-compose)
 
+#### There is no logs when running the consumer
+The issue was tty was not enabled in the docker-compose file.
+reference: [Psuedo-tty allocation in docker-compose](https://stackoverflow.com/a/62955017)
+
 <br>
 I have to deep dive into the core concepts and tools
 
@@ -92,13 +96,16 @@ I have to deep dive into the core concepts and tools
 - [x] populate threshold_exceeded when creating a new rule
 - [ ] store market data in the db
 - [ ] use HashiCorp Vault for secrets management
-- [ ] update seed data
-- [ ] fix alert repetition problem
-- [ ] update readme
-- [ ] create a new diagrams
-- [ ] set auto commit to true, and update the queries
+- [ ] **update seed data**
+- [ ] **fix alert repetition bug**
+- [x] **add retool details in the readme**
+- [ ] **create a new diagrams**
+- [ ] **set auto commit to true, and update the queries**
 - [ ] use Taskfile instead of Makefile
-- [ ] fix mount issue in docker-compose 
+- [ ] fix mount issue in docker-compose
+- [ ] find a way to display logs in Retool
+- [x] install make in readme
+- [ ] make the readme compatible with Windows users
 
 -----
 ### Thinking:
