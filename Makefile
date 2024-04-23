@@ -17,3 +17,9 @@ beat-logs:
 
 publish-event:
 	docker exec -it fastapi_app_node /bin/bash -c "python3 core/messaging.py"
+
+rebuild-fast:
+	cd dev_setup && docker-compose build fastapi_app && docker-compose up -d 
+
+trigger-task:
+	docker exec worker_node celery -A worker.app call worker.app.process_market_rules_task

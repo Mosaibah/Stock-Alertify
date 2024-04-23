@@ -80,6 +80,9 @@ reference: [Psuedo-tty allocation in docker-compose](https://stackoverflow.com/a
 <br>
 I have to deep dive into the core concepts and tools
 
+----
+- [layers, logging, folder structer](https://medium.com/@will.udstrand/introduction-to-python-api-building-a2e3b80219c)
+
 
 ----
 ### TODO: 
@@ -93,6 +96,7 @@ I have to deep dive into the core concepts and tools
 - [ ] select only needed columns
 - [x] make sure to use pydantic models in all responses
 - [x] implement a proper logging
+- [ ] understand the session and how can we manage it 
 - [x] populate threshold_exceeded when creating a new rule
 - [ ] store market data in the db
 - [ ] use HashiCorp Vault for secrets management
@@ -106,6 +110,7 @@ I have to deep dive into the core concepts and tools
 - [ ] find a way to display logs in Retool
 - [x] install make in readme
 - [ ] make the readme compatible with Windows users
+- [ ] create indexes
 
 -----
 ### Thinking:
